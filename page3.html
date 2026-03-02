@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neues-Ich Gespräch buchen – Dr. Ahmadli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --plum:#4A1D6E; --plum-light:#6B3A8E; --plum-pale:#EDE4F5; --plum-ultra:#F7F2FC; --ivory:#FDFBF8; --text-dark:#1A1020; --text-mid:#4A3F52; --text-light:#8B7A96; --gold:#C9A96E; --gold-light:#E8D5B0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--ivory); color:var(--text-dark); overflow-x:hidden; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 60px; display:flex; justify-content:space-between; align-items:center; background:rgba(253,251,248,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(74,29,110,0.08); }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--plum); }
+    .nav-langs { font-size:11px; font-weight:500; letter-spacing:2px; color:var(--text-light); text-transform:uppercase; }
+
+    /* HERO */
+    .hero { padding:140px 60px 80px; max-width:860px; margin:0 auto; text-align:center; }
+    .callout { display:inline-flex; align-items:center; gap:8px; background:var(--plum-pale); border:1px solid rgba(74,29,110,0.2); border-radius:100px; padding:8px 18px; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--plum); margin-bottom:32px; animation:fadeUp 0.6s ease both; }
+    .callout::before { content:'◆'; font-size:7px; }
+    h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,5vw,58px); font-weight:300; line-height:1.15; color:var(--text-dark); margin-bottom:24px; animation:fadeUp 0.7s ease 0.1s both; }
+    h1 em { font-style:italic; color:var(--plum); }
+    .subheadline { font-size:17px; line-height:1.75; color:var(--text-mid); font-weight:300; max-width:600px; margin:0 auto; animation:fadeUp 0.7s ease 0.2s both; }
+
+    /* DISCLAIMER */
+    .disclaimer { padding:60px 60px 0; max-width:1000px; margin:0 auto; }
+    .disclaimer-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .disclaimer-card { border-radius:12px; padding:40px; }
+    .disclaimer-card.yes { background:white; border:1px solid rgba(74,29,110,0.1); box-shadow:0 2px 20px rgba(74,29,110,0.06); }
+    .disclaimer-card.no { background:#FFF8F8; border:1px solid rgba(180,30,30,0.08); }
+    .disclaimer-header { display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+    .disclaimer-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .yes .disclaimer-icon { background:var(--plum-pale); }
+    .no .disclaimer-icon { background:#FDE8E8; }
+    .disclaimer-heading { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; }
+    .yes .disclaimer-heading { color:var(--plum); }
+    .no .disclaimer-heading { color:#B01E1E; }
+    .disclaimer-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+    .disclaimer-list li { display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.65; color:var(--text-mid); font-weight:300; }
+    .check-yes { color:var(--plum); font-size:12px; margin-top:3px; flex-shrink:0; font-weight:500; }
+    .check-no { color:#B01E1E; font-size:12px; margin-top:3px; flex-shrink:0; font-weight:500; }
+
+    /* CALENDAR SECTION */
+    .calendar-section { padding:80px 60px; max-width:1000px; margin:0 auto; }
+    .calendar-pre { text-align:center; margin-bottom:40px; }
+    .calendar-pre-text { font-size:15px; color:var(--text-mid); font-weight:300; line-height:1.7; }
+    .calendar-pre-text strong { font-weight:500; color:var(--text-dark); }
+    .calendar-wrap { background:white; border-radius:20px; border:1px solid rgba(74,29,110,0.1); box-shadow:0 4px 60px rgba(74,29,110,0.1); overflow:hidden; position:relative; }
+    .calendar-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--plum),var(--gold)); }
+    .calendar-header { padding:40px 52px 32px; border-bottom:1px solid var(--plum-pale); display:flex; justify-content:space-between; align-items:center; }
+    .cal-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; color:var(--text-dark); }
+    .cal-meta { display:flex; gap:20px; }
+    .cal-meta-item { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-light); }
+    .cal-meta-dot { width:8px; height:8px; border-radius:50%; background:var(--plum); flex-shrink:0; }
+    .calendar-body { padding:40px 52px 52px; }
+    .cal-month-nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+    .cal-month { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--text-dark); }
+    .cal-nav-btn { width:36px; height:36px; border-radius:50%; border:1px solid rgba(74,29,110,0.15); background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--plum); font-size:14px; transition:all 0.2s; }
+    .cal-nav-btn:hover { background:var(--plum-pale); }
+    .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+    .cal-day-label { text-align:center; font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--text-light); padding:8px 4px; }
+    .cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:14px; color:var(--text-mid); cursor:default; transition:all 0.2s; }
+    .cal-day.available { color:var(--text-dark); cursor:pointer; font-weight:500; }
+    .cal-day.available:hover { background:var(--plum-pale); color:var(--plum); }
+    .cal-day.selected { background:var(--plum); color:white; }
+    .cal-day.today { border:1px solid rgba(74,29,110,0.2); }
+    .cal-day.empty { pointer-events:none; }
+    .cal-day.past { color:rgba(74,29,110,0.2); pointer-events:none; }
+    .time-section { margin-top:40px; display:none; }
+    .time-section.visible { display:block; }
+    .time-label { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--plum); margin-bottom:20px; }
+    .time-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .time-slot { padding:14px 10px; border:1.5px solid rgba(74,29,110,0.12); border-radius:8px; text-align:center; font-size:13px; color:var(--text-dark); cursor:pointer; transition:all 0.2s; }
+    .time-slot:hover { border-color:var(--plum); background:var(--plum-pale); color:var(--plum); }
+    .time-slot.selected { background:var(--plum); color:white; border-color:var(--plum); }
+    .confirm-section { margin-top:40px; padding-top:32px; border-top:1px solid var(--plum-pale); display:none; }
+    .confirm-section.visible { display:block; }
+    .confirm-form { display:flex; flex-direction:column; gap:16px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .confirm-form input, .confirm-form select { padding:14px 18px; border:1.5px solid rgba(74,29,110,0.15); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text-dark); background:var(--ivory); outline:none; transition:border-color 0.2s; }
+    .confirm-form input:focus, .confirm-form select:focus { border-color:var(--plum); }
+    .confirm-form input::placeholder { color:var(--text-light); }
+    .confirm-submit { background:var(--plum); color:white; border:none; padding:18px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+    .confirm-submit:hover { background:var(--plum-light); box-shadow:0 8px 24px rgba(74,29,110,0.25); }
+    .confirm-booking-summary { background:var(--plum-ultra); border-radius:10px; padding:20px 24px; font-size:14px; color:var(--text-mid); line-height:1.6; margin-bottom:4px; }
+    .confirm-booking-summary strong { color:var(--plum); }
+
+    .calendar-post { padding:28px 52px 40px; background:var(--plum-ultra); border-top:1px solid rgba(74,29,110,0.08); }
+    .post-row { display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+    .post-item { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text-mid); }
+    .post-icon { font-size:16px; }
+
+    /* SUCCESS STATE */
+    .success-screen { display:none; text-align:center; padding:80px 40px; }
+    .success-screen.visible { display:block; }
+    .success-icon { font-size:64px; margin-bottom:28px; }
+    .success-title { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--text-dark); margin-bottom:16px; }
+    .success-title em { font-style:italic; color:var(--plum); }
+    .success-text { font-size:16px; line-height:1.75; color:var(--text-mid); font-weight:300; max-width:480px; margin:0 auto; }
+
+    /* TRUST STRIP */
+    .trust { padding:60px 60px 100px; max-width:1000px; margin:0 auto; }
+    .trust-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(74,29,110,0.07); border-radius:12px; overflow:hidden; }
+    .trust-item { background:white; padding:32px 24px; text-align:center; }
+    .trust-icon { font-size:24px; margin-bottom:12px; }
+    .trust-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--text-dark); margin-bottom:6px; }
+    .trust-text { font-size:12px; line-height:1.6; color:var(--text-light); }
+
+    footer { padding:40px 60px; border-top:1px solid rgba(74,29,110,0.08); display:flex; justify-content:space-between; align-items:center; }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--plum); font-weight:600; }
+    .footer-address { font-size:12px; color:var(--text-light); text-align:center; }
+    .footer-right { font-size:11px; color:var(--text-light); }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+    @media (max-width:900px) {
+      nav { padding:16px 24px; }
+      .hero { padding:100px 24px 60px; }
+      .disclaimer,.calendar-section,.trust { padding-left:24px; padding-right:24px; }
+      .disclaimer-grid { grid-template-columns:1fr; }
+      .calendar-header { padding:28px 28px 24px; flex-direction:column; gap:16px; align-items:flex-start; }
+      .calendar-body,.calendar-post { padding-left:28px; padding-right:28px; }
+      .time-grid { grid-template-columns:repeat(3,1fr); }
+      .form-row { grid-template-columns:1fr; }
+      .trust-strip { grid-template-columns:1fr 1fr; }
+      footer { padding:32px 24px; flex-direction:column; gap:16px; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">Dr. Ahmadli · Hannover</div>
+    <div class="nav-langs">DE · EN · TR · AZ · RUS</div>
+  </nav>
+
+  <div class="hero">
+    <div class="callout">Fast geschafft — sichern Sie sich Ihren kostenlosen Platz</div>
+    <h1>Wählen Sie Ihre Zeit.<br><em>Treffen Sie den Arzt, dem Frauen vertrauen.</em></h1>
+    <p class="subheadline">In 15 Minuten bekommen Sie mehr Klarheit über Ihre Entscheidung, als Sie in Jahren der Recherche alleine gefunden haben.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <div class="disclaimer-grid">
+      <div class="disclaimer-card yes">
+        <div class="disclaimer-header">
+          <div class="disclaimer-icon">✦</div>
+          <div class="disclaimer-heading">Dieses Gespräch ist für Sie, wenn:</div>
+        </div>
+        <ul class="disclaimer-list">
+          <li><span class="check-yes">✓</span>Sie ernsthaft über eine Nasenkorrektur oder einen ästhetischen Eingriff nachdenken.</li>
+          <li><span class="check-yes">✓</span>Sie bereit sind, offen über Ihre Wünsche und Bedenken zu sprechen.</li>
+          <li><span class="check-yes">✓</span>Sie eine persönliche, ehrliche Antwort von einem erfahrenen Chirurgen möchten — ohne Verkaufsdruck.</li>
+        </ul>
+      </div>
+      <div class="disclaimer-card no">
+        <div class="disclaimer-header">
+          <div class="disclaimer-icon" style="background:#FDE8E8;">✕</div>
+          <div class="disclaimer-heading">Dieses Gespräch ist nicht für Sie, wenn:</div>
+        </div>
+        <ul class="disclaimer-list">
+          <li><span class="check-no">✕</span>Sie nur neugierig sind und noch keine ernsthafte Absicht haben.</li>
+          <li><span class="check-no">✕</span>Sie nach dem günstigsten Angebot suchen, unabhängig von Qualität und Sicherheit.</li>
+          <li><span class="check-no">✕</span>Sie nicht bereit sind, 15 Minuten vollständig präsent zu sein.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="calendar-section">
+    <div class="calendar-pre">
+      <p class="calendar-pre-text">👇 <strong>Wählen Sie Ihren Wunschtermin</strong> — das Gespräch findet telefonisch oder per Video statt, in der Sprache Ihrer Wahl.</p>
+    </div>
+    <div class="calendar-wrap">
+      <div class="calendar-header">
+        <div class="cal-title">Das Neue-Ich Gespräch — 15 Minuten</div>
+        <div class="cal-meta">
+          <div class="cal-meta-item"><div class="cal-meta-dot"></div>Kostenlos</div>
+          <div class="cal-meta-item"><div class="cal-meta-dot" style="background:var(--gold)"></div>Telefonisch oder Video</div>
+          <div class="cal-meta-item"><div class="cal-meta-dot" style="background:#2E7D32"></div>Unverbindlich</div>
+        </div>
+      </div>
+      <div class="calendar-body">
+        <div class="cal-month-nav">
+          <button class="cal-nav-btn" onclick="prevMonth()">‹</button>
+          <div class="cal-month" id="calMonth">März 2026</div>
+          <button class="cal-nav-btn" onclick="nextMonth()">›</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+
+        <div class="time-section" id="timeSection">
+          <div class="time-label" id="timeLabel">Verfügbare Zeiten</div>
+          <div class="time-grid" id="timeGrid"></div>
+        </div>
+
+        <div class="confirm-section" id="confirmSection">
+          <div class="confirm-booking-summary" id="bookingSummary"></div>
+          <div class="confirm-form">
+            <div class="form-row">
+              <input type="text" placeholder="Ihr Vorname" id="firstName" />
+              <input type="text" placeholder="Ihr Nachname" id="lastName" />
+            </div>
+            <input type="email" placeholder="Ihre E-Mail-Adresse" id="email" />
+            <input type="tel" placeholder="Ihre Telefonnummer" id="phone" />
+            <select id="language">
+              <option value="" disabled selected>Bevorzugte Sprache für das Gespräch</option>
+              <option>Deutsch</option>
+              <option>Englisch</option>
+              <option>Türkisch</option>
+              <option>Aserbaidschanisch</option>
+              <option>Russisch</option>
+            </select>
+            <button class="confirm-submit" onclick="confirmBooking()">
+              Termin jetzt bestätigen →
+            </button>
+          </div>
+        </div>
+
+        <div class="success-screen" id="successScreen">
+          <div class="success-icon">✦</div>
+          <div class="success-title">Ihr Termin ist <em>bestätigt.</em></div>
+          <p class="success-text">Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details. Wir freuen uns darauf, Sie kennenzulernen.</p>
+        </div>
+      </div>
+      <div class="calendar-post">
+        <div class="post-row">
+          <div class="post-item"><span class="post-icon">🔒</span>Ihre Daten sind sicher und werden niemals weitergegeben.</div>
+          <div class="post-item"><span class="post-icon">⏱</span>Dauer: 15 Minuten</div>
+          <div class="post-item"><span class="post-icon">📞</span>Telefon oder Video</div>
+          <div class="post-item"><span class="post-icon">🌍</span>DE · EN · TR · AZ · RUS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="trust-strip">
+      <div class="trust-item"><div class="trust-icon">🏥</div><div class="trust-title">Deutsche Standards</div><p class="trust-text">Höchste medizinische Qualität und Sicherheit gemäß deutschen Richtlinien.</p></div>
+      <div class="trust-item"><div class="trust-icon">🎓</div><div class="trust-title">Univ. Istanbul</div><p class="trust-text">International anerkannte chirurgische Ausbildung an einer der besten Universitäten der Welt.</p></div>
+      <div class="trust-item"><div class="trust-icon">💬</div><div class="trust-title">5 Sprachen</div><p class="trust-text">Sprechen Sie in der Sprache, in der Sie sich am wohlsten fühlen.</p></div>
+      <div class="trust-item"><div class="trust-icon">✦</div><div class="trust-title">20+ Jahre</div><p class="trust-text">Über zwei Jahrzehnte chirurgische Erfahrung mit Patientinnen aus ganz Deutschland.</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Dr. Ahmadli</div>
+    <div class="footer-address">Hermann-Bahlsen-Allee 49 · 30655 Hannover · Deutschland</div>
+    <div class="footer-right">+49 531 263 33 55</div>
+  </footer>
+
+  <script>
+    const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    const days = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+    let currentDate = new Date(2026, 2, 1);
+    let selectedDay = null;
+    let selectedTime = null;
+
+    const timeSlots = ['09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+    const availableDays = [3,5,6,9,10,12,13,16,17,19,20,23,24,26,27];
+
+    function renderCalendar() {
+      const grid = document.getElementById('calGrid');
+      document.getElementById('calMonth').textContent = months[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+      grid.innerHTML = '';
+      days.forEach(d => { const el=document.createElement('div'); el.className='cal-day-label'; el.textContent=d; grid.appendChild(el); });
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      let startDay = firstDay.getDay();
+      startDay = startDay === 0 ? 6 : startDay - 1;
+      for(let i=0;i<startDay;i++) { const el=document.createElement('div'); el.className='cal-day empty'; grid.appendChild(el); }
+      const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0).getDate();
+      const today = new Date();
+      for(let d=1;d<=daysInMonth;d++) {
+        const el=document.createElement('div');
+        const thisDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), d);
+        const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const isAvail = availableDays.includes(d) && !isPast;
+        el.className = 'cal-day' + (isPast?' past':'') + (isAvail?' available':'') + (d===selectedDay?' selected':'');
+        el.textContent = d;
+        if(isAvail) el.onclick = () => selectDay(d);
+        grid.appendChild(el);
+      }
+    }
+
+    function selectDay(d) {
+      selectedDay = d;
+      selectedTime = null;
+      renderCalendar();
+      const ts = document.getElementById('timeSection');
+      ts.classList.add('visible');
+      document.getElementById('confirmSection').classList.remove('visible');
+      const label = document.getElementById('timeLabel');
+      label.textContent = 'Verfügbare Zeiten — ' + d + '. ' + months[currentDate.getMonth()];
+      const tg = document.getElementById('timeGrid');
+      tg.innerHTML = '';
+      timeSlots.forEach(t => {
+        const el=document.createElement('div');
+        el.className='time-slot';
+        el.textContent=t;
+        el.onclick = () => selectTime(t, el);
+        tg.appendChild(el);
+      });
+      ts.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+
+    function selectTime(t, el) {
+      selectedTime = t;
+      document.querySelectorAll('.time-slot').forEach(s=>s.classList.remove('selected'));
+      el.classList.add('selected');
+      const cs = document.getElementById('confirmSection');
+      cs.classList.add('visible');
+      document.getElementById('bookingSummary').innerHTML = '📅 <strong>' + selectedDay + '. ' + months[currentDate.getMonth()] + ' ' + currentDate.getFullYear() + ' · ' + t + ' Uhr</strong> — Neue-Ich Gespräch (15 Minuten)';
+      cs.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+
+    function confirmBooking() {
+      const firstName = document.getElementById('firstName').value;
+      const email = document.getElementById('email').value;
+      if(!firstName || !email) { alert('Bitte füllen Sie mindestens Ihren Namen und Ihre E-Mail-Adresse aus.'); return; }
+      document.getElementById('confirmSection').style.display='none';
+      document.getElementById('timeSection').style.display='none';
+      document.getElementById('successScreen').classList.add('visible');
+      document.getElementById('successScreen').scrollIntoView({behavior:'smooth'});
+    }
+
+    function prevMonth() { currentDate.setMonth(currentDate.getMonth()-1); selectedDay=null; selectedTime=null; renderCalendar(); document.getElementById('timeSection').classList.remove('visible'); document.getElementById('confirmSection').classList.remove('visible'); }
+    function nextMonth() { currentDate.setMonth(currentDate.getMonth()+1); selectedDay=null; selectedTime=null; renderCalendar(); document.getElementById('timeSection').classList.remove('visible'); document.getElementById('confirmSection').classList.remove('visible'); }
+
+    renderCalendar();
+
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}});},{threshold:0.1});
+    document.querySelectorAll('.disclaimer-card,.trust-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';observer.observe(el);});
+  </script>
+</body>
+</html>

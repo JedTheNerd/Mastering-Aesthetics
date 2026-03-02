@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ihr kostenloses Training – Dr. Ahmadli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --plum:#4A1D6E; --plum-light:#6B3A8E; --plum-pale:#EDE4F5; --plum-ultra:#F7F2FC; --ivory:#FDFBF8; --text-dark:#1A1020; --text-mid:#4A3F52; --text-light:#8B7A96; --gold:#C9A96E; --gold-light:#E8D5B0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--ivory); color:var(--text-dark); overflow-x:hidden; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 60px; display:flex; justify-content:space-between; align-items:center; background:rgba(253,251,248,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(74,29,110,0.08); }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--plum); }
+    .nav-langs { font-size:11px; font-weight:500; letter-spacing:2px; color:var(--text-light); text-transform:uppercase; }
+    .hero { padding:140px 60px 60px; text-align:center; max-width:860px; margin:0 auto; }
+    .callout { display:inline-flex; align-items:center; gap:8px; background:#E8F5E9; border:1px solid rgba(46,125,50,0.25); border-radius:100px; padding:8px 18px; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:#2E7D32; margin-bottom:32px; }
+    .callout::before { content:'✓'; font-size:10px; }
+    h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,5vw,56px); font-weight:300; line-height:1.15; color:var(--text-dark); margin-bottom:24px; }
+    h1 em { font-style:italic; color:var(--plum); }
+    .subheadline { font-size:17px; line-height:1.75; color:var(--text-mid); font-weight:300; max-width:600px; margin:0 auto; }
+    .video-section { padding:50px 60px 0; max-width:900px; margin:0 auto; }
+    .video-wrap { background:#111; border-radius:16px; overflow:hidden; position:relative; aspect-ratio:16/9; box-shadow:0 40px 120px rgba(74,29,110,0.2); }
+    .video-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; background:linear-gradient(135deg,#1A0A28 0%,#2D1150 100%); }
+    .play-btn { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,0.1); border:2px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.3s; font-size:26px; color:white; padding-left:5px; }
+    .play-btn:hover { background:var(--plum); border-color:var(--plum); transform:scale(1.05); }
+    .video-label { font-size:13px; color:rgba(255,255,255,0.5); letter-spacing:1px; text-transform:uppercase; }
+    .video-caption { text-align:center; font-size:12px; color:var(--text-light); margin-top:14px; }
+    .section-label { font-size:11px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:var(--plum); margin-bottom:16px; }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,3.5vw,42px); font-weight:300; line-height:1.2; margin-bottom:48px; }
+    .takeaways { padding:80px 60px; max-width:1100px; margin:0 auto; }
+    .takeaway-list { display:flex; flex-direction:column; gap:2px; border-radius:12px; overflow:hidden; background:rgba(74,29,110,0.07); }
+    .takeaway-item { background:white; padding:32px 40px; display:flex; align-items:flex-start; gap:24px; transition:background 0.3s; }
+    .takeaway-item:hover { background:var(--plum-ultra); }
+    .takeaway-icon { width:44px; height:44px; border-radius:50%; background:var(--plum-pale); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .takeaway-body h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--text-dark); margin-bottom:6px; }
+    .takeaway-body p { font-size:14px; line-height:1.7; color:var(--text-mid); font-weight:300; }
+    .cta-block { text-align:center; padding:20px 60px 60px; }
+    .cta-primary { display:inline-flex; align-items:center; gap:12px; background:var(--plum); color:white; padding:18px 44px; border-radius:4px; font-size:14px; font-weight:500; letter-spacing:0.5px; cursor:pointer; border:none; transition:all 0.3s; font-family:'DM Sans',sans-serif; text-decoration:none; }
+    .cta-primary:hover { background:var(--plum-light); transform:translateY(-2px); box-shadow:0 12px 40px rgba(74,29,110,0.25); }
+    .arrow { transition:transform 0.3s; display:inline-block; }
+    .cta-primary:hover .arrow { transform:translateX(4px); }
+    .micro-cta { font-size:13px; color:var(--text-light); margin-top:14px; font-style:italic; }
+    .mechanism { padding:100px 60px; background:var(--plum); position:relative; overflow:hidden; }
+    .mechanism::before { content:'Neue-Ich'; position:absolute; right:-40px; top:50%; transform:translateY(-50%); font-family:'Cormorant Garamond',serif; font-size:180px; font-weight:300; color:rgba(255,255,255,0.03); white-space:nowrap; pointer-events:none; }
+    .mechanism-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+    .mechanism .section-label { color:rgba(255,255,255,0.5); }
+    .mechanism .section-title { color:white; max-width:600px; }
+    .mechanism-desc { font-size:16px; line-height:1.85; color:rgba(255,255,255,0.75); font-weight:300; max-width:620px; margin-bottom:56px; }
+    .mechanism-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; margin-bottom:56px; }
+    .mech-card { background:rgba(255,255,255,0.05); padding:44px 36px; transition:background 0.3s; }
+    .mech-card:hover { background:rgba(255,255,255,0.09); }
+    .mech-icon { font-size:28px; margin-bottom:20px; }
+    .mech-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:white; margin-bottom:12px; }
+    .mech-text { font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6); font-weight:300; }
+    .cta-outline { display:inline-flex; align-items:center; gap:12px; background:transparent; color:white; padding:17px 40px; border-radius:4px; font-size:14px; font-weight:500; letter-spacing:0.5px; cursor:pointer; border:1px solid rgba(255,255,255,0.3); transition:all 0.3s; font-family:'DM Sans',sans-serif; }
+    .cta-outline:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.6); }
+    .future { padding:100px 60px; }
+    .future-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .future-timeline { display:flex; flex-direction:column; }
+    .timeline-item { display:flex; gap:24px; }
+    .timeline-left { display:flex; flex-direction:column; align-items:center; }
+    .timeline-dot { width:14px; height:14px; border-radius:50%; background:var(--plum); flex-shrink:0; margin-top:4px; }
+    .timeline-line { width:1px; background:rgba(74,29,110,0.15); flex:1; min-height:40px; }
+    .timeline-item:last-child .timeline-line { display:none; }
+    .timeline-content { padding-bottom:36px; }
+    .timeline-time { font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--plum); margin-bottom:8px; }
+    .timeline-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--text-dark); margin-bottom:8px; }
+    .timeline-text { font-size:14px; line-height:1.7; color:var(--text-mid); font-weight:300; }
+    .proof-card { background:white; border-radius:12px; padding:36px; margin-bottom:20px; border:1px solid rgba(74,29,110,0.08); box-shadow:0 2px 20px rgba(74,29,110,0.06); }
+    .stars { color:var(--gold); font-size:14px; letter-spacing:2px; margin-bottom:16px; }
+    .proof-quote { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; font-style:italic; line-height:1.6; color:var(--text-dark); margin-bottom:16px; }
+    .proof-author { font-size:12px; letter-spacing:1px; color:var(--text-light); text-transform:uppercase; }
+    .future-cta { margin-top:8px; }
+    .future-cta .cta-primary { width:100%; justify-content:center; }
+    .faq { padding:100px 60px; background:var(--plum-ultra); }
+    .faq-inner { max-width:800px; margin:0 auto; }
+    .faq-inner .section-title { margin-bottom:50px; }
+    .faq-list { display:flex; flex-direction:column; gap:2px; border-radius:12px; overflow:hidden; background:rgba(74,29,110,0.07); }
+    .faq-item { background:white; }
+    .faq-question { padding:28px 36px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:20px; transition:background 0.2s; }
+    .faq-question:hover { background:var(--plum-pale); }
+    .faq-q-text { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--text-dark); }
+    .faq-toggle { width:28px; height:28px; border-radius:50%; border:1px solid rgba(74,29,110,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--plum); flex-shrink:0; transition:all 0.3s; }
+    .faq-item.open .faq-toggle { background:var(--plum); color:white; transform:rotate(45deg); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height:200px; }
+    .faq-answer-inner { padding:0 36px 28px; font-size:15px; line-height:1.75; color:var(--text-mid); font-weight:300; border-top:1px solid var(--plum-pale); padding-top:20px; }
+    .faq-cta { text-align:center; margin-top:60px; }
+    footer { padding:40px 60px; border-top:1px solid rgba(74,29,110,0.08); display:flex; justify-content:space-between; align-items:center; }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--plum); font-weight:600; }
+    .footer-address { font-size:12px; color:var(--text-light); text-align:center; }
+    .footer-right { font-size:11px; color:var(--text-light); }
+    @media (max-width:900px) {
+      nav { padding:16px 24px; }
+      .hero { padding:100px 24px 50px; }
+      .video-section,.takeaways,.cta-block,.future,.faq { padding-left:24px; padding-right:24px; }
+      .mechanism { padding:60px 24px; }
+      .mechanism-cards { grid-template-columns:1fr; }
+      .future-inner { grid-template-columns:1fr; gap:60px; }
+      footer { padding:32px 24px; flex-direction:column; gap:16px; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">Dr. Ahmadli · Hannover</div>
+    <div class="nav-langs">DE · EN · TR · AZ · RUS</div>
+  </nav>
+
+  <div class="hero">
+    <div class="callout">Ihr Training ist bereit — sehen Sie es sich jetzt an</div>
+    <h1>Was Sie in den nächsten 20 Minuten erfahren,<br><em>hätte ich mir für jede Patientin gewünscht.</em></h1>
+    <p class="subheadline">Sehen Sie sich das Video vollständig an. Am Ende werden Sie genau wissen, was Sie wollen, was Sie fragen müssen — und ob wir zusammenarbeiten sollten.</p>
+  </div>
+
+  <div class="video-section">
+    <div class="video-wrap">
+      <div class="video-placeholder">
+        <div class="play-btn">▶</div>
+        <div class="video-label">Training ansehen · ~20 Minuten</div>
+      </div>
+    </div>
+    <p class="video-caption">🔒 Dieses Training ist nur für Frauen, die sich aktiv mit dem Thema Rhinoplastik befassen.</p>
+  </div>
+
+  <section class="takeaways">
+    <p class="section-label">Was Sie gerade gelernt haben</p>
+    <h2 class="section-title">Drei Erkenntnisse, die alles verändern.</h2>
+    <div class="takeaway-list">
+      <div class="takeaway-item">
+        <div class="takeaway-icon">🪞</div>
+        <div class="takeaway-body"><h3>Natürliche Ergebnisse sind kein Zufall</h3><p>Sie entstehen, wenn ein Chirurg zuhört, bevor er operiert — und Ihre Gesichtszüge versteht, nicht ignoriert.</p></div>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-icon">🌍</div>
+        <div class="takeaway-body"><h3>Deutschland vs. Istanbul — jetzt wissen Sie die Wahrheit</h3><p>Sie können eine Entscheidung treffen, die Sie in einem Jahr nicht bereuen werden.</p></div>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-icon">✅</div>
+        <div class="takeaway-body"><h3>Sie erkennen jetzt den richtigen Chirurgen sofort</h3><p>Nach diesem Training haben Sie einen inneren Maßstab. Jedes Gespräch, das Sie führen, wird an diesem gemessen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <button class="cta-primary" onclick="window.location.href='page3.html'">
+      Kostenloses Neue-Ich Gespräch buchen <span class="arrow">→</span>
+    </button>
+    <p class="micro-cta">Weil Sie jetzt genug wissen, um die richtige Entscheidung zu treffen — und ein 15-minütiges Gespräch der einzige Schritt ist, der zwischen Ihnen und Klarheit steht.</p>
+  </div>
+
+  <section class="mechanism">
+    <div class="mechanism-inner">
+      <p class="section-label">Was ist das Neue-Ich Gespräch?</p>
+      <h2 class="section-title">Kein Verkaufsgespräch.<br>Kein Beratungstermin.<br><span style="font-style:italic;color:var(--gold-light);">Etwas anderes.</span></h2>
+      <p class="mechanism-desc">In 15 Minuten nehmen wir uns Zeit, Ihre Situation wirklich zu verstehen — wo Sie gerade sind, was Sie sich wünschen, und was Sie bisher zurückgehalten hat. Wir gehen gemeinsam durch, wie Ihr Leben in 3 Monaten, 6 Monaten und einem Jahr aussehen könnte — wenn Sie diese Entscheidung heute treffen.</p>
+      <div class="mechanism-cards">
+        <div class="mech-card"><div class="mech-icon">🪞</div><div class="mech-title">Ihr Neue-Ich Bild</div><p class="mech-text">Wir helfen Ihnen, sich vorzustellen, wie Sie nach dem Eingriff aussehen — und noch wichtiger, wie Sie sich fühlen werden.</p></div>
+        <div class="mech-card"><div class="mech-icon">❓</div><div class="mech-title">Ihre offenen Fragen</div><p class="mech-text">Bringen Sie alles mit, was Sie beschäftigt. Keine Frage ist zu klein oder zu persönlich.</p></div>
+        <div class="mech-card"><div class="mech-icon">✅</div><div class="mech-title">Ihr nächster Schritt</div><p class="mech-text">Am Ende des Gesprächs wissen Sie genau, was als nächstes zu tun ist — mit oder ohne uns.</p></div>
+      </div>
+      <button class="cta-outline" onclick="window.location.href='page3.html'">Kostenloses Neue-Ich Gespräch buchen <span class="arrow">→</span></button>
+      <p class="micro-cta" style="color:rgba(255,255,255,0.4);margin-top:14px;">Weil die Version von Ihnen, die Sie sich immer vorgestellt haben, nur ein Gespräch entfernt ist.</p>
+    </div>
+  </section>
+
+  <section class="future">
+    <div class="future-inner">
+      <div>
+        <p class="section-label">Stellen Sie sich vor</p>
+        <h2 class="section-title">12 Monate von heute.<br><em style="color:var(--plum);">Wie sieht Ihr Leben aus?</em></h2>
+        <div class="future-timeline">
+          <div class="timeline-item"><div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="timeline-content"><div class="timeline-time">3 Wochen</div><div class="timeline-title">Der erste Blick in den Spiegel</div><p class="timeline-text">Noch geschwollen, aber die Form zeichnet sich ab. Ein Gefühl von Hoffnung — und die Gewissheit, die richtige Entscheidung getroffen zu haben.</p></div></div>
+          <div class="timeline-item"><div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="timeline-content"><div class="timeline-time">3 Monate</div><div class="timeline-title">Das erste ungefilterte Foto</div><p class="timeline-text">Die Schwellung ist weg. Sie nehmen ein Foto von sich auf — ohne Filter. Und Sie mögen, was Sie sehen.</p></div></div>
+          <div class="timeline-item"><div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="timeline-content"><div class="timeline-time">12 Monate</div><div class="timeline-title">Der Gedanke, der nicht mehr kommt</div><p class="timeline-text">Sie merken, dass Sie aufgehört haben, daran zu denken. Das ist der eigentliche Sieg — die Stille, wo früher der Zweifel war.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Was unsere Patientinnen sagen</p>
+        <div class="proof-card"><div class="stars">★★★★★</div><p class="proof-quote">„Ich habe 11 Jahre gewartet. Und jetzt frage ich mich, warum ich nicht früher gekommen bin. Das Neue-Ich Gespräch hat mir geholfen zu verstehen, dass ich bereit war."</p><div class="proof-author">Sabrina, 38 · München</div></div>
+        <div class="proof-card"><div class="stars">★★★★★</div><p class="proof-quote">„Ich kam ins Gespräch mit hundert Fragen und ging mit einem einzigen Gefühl raus: Vertrauen. Drei Monate später erkenne ich mich im Spiegel wieder."</p><div class="proof-author">Arzu, 31 · Köln</div></div>
+        <div class="future-cta"><button class="cta-primary" style="width:100%;justify-content:center;" onclick="window.location.href='page3.html'">Ich bin bereit — Neue-Ich Gespräch buchen <span class="arrow">→</span></button><p class="micro-cta">Weil Sie sich dieses Gefühl verdient haben. Und weil es kostenlos ist.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="faq-inner">
+      <p class="section-label">Häufig gestellte Fragen</p>
+      <h2 class="section-title">Alles, was Sie noch wissen möchten.</h2>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Ist das Gespräch wirklich kostenlos?</span><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Ja. Vollständig. Keine versteckten Kosten, keine Verpflichtung danach. Es ist ein Gespräch — nichts mehr.</div></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Muss ich Deutsch sprechen?</span><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Nein. Dr. Ahmadli spricht Deutsch, Englisch, Türkisch, Aserbaidschanisch und Russisch. Sprechen Sie in der Sprache, in der Sie sich am wohlsten fühlen.</div></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Bin ich verpflichtet, nach dem Gespräch zu buchen?</span><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Absolut nicht. Das Ziel des Gesprächs ist Klarheit — nicht Abschluss. Wenn Sie mehr Zeit brauchen, ist das vollkommen in Ordnung.</div></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Was passiert nach dem Gespräch?</span><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Wenn Sie bereit sind, besprechen wir den nächsten Schritt — eine vollständige Erstberatung in unserer Klinik in Hannover. Wenn nicht, gehen Sie mit allen Informationen, die Sie brauchen.</div></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Wie schnell bekomme ich einen Termin?</span><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">In der Regel innerhalb von 3–5 Werktagen. Wir halten bewusst begrenzte Plätze frei, damit jede Patientin die Aufmerksamkeit bekommt, die sie verdient.</div></div></div>
+      </div>
+      <div class="faq-cta">
+        <button class="cta-primary" style="font-size:15px;padding:20px 52px;" onclick="window.location.href='page3.html'">Jetzt meinen kostenlosen Platz sichern <span class="arrow">→</span></button>
+        <p class="micro-cta" style="margin-top:16px;">Weil jeder Tag, an dem Sie warten, ein weiterer Tag ist, an dem Sie nicht die Version von sich selbst sind, die Sie sein könnten.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Dr. Ahmadli</div>
+    <div class="footer-address">Hermann-Bahlsen-Allee 49 · 30655 Hannover · Deutschland</div>
+    <div class="footer-right">+49 531 263 33 55</div>
+  </footer>
+
+  <script>
+    function toggleFaq(el) { const item=el.closest('.faq-item'); const isOpen=item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open')); if(!isOpen) item.classList.add('open'); }
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}});},{threshold:0.1});
+    document.querySelectorAll('.takeaway-item,.proof-card,.timeline-item,.mech-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';observer.observe(el);});
+  </script>
+</body>
+</html>
